@@ -26,10 +26,18 @@ class GradientContainer extends StatelessWidget
         ),
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'assets/images/dice-2.png',
               width: 200,
+            ),
+            TextButton(
+              onPressed: () 
+              {
+
+              }, 
+              child: const Text('Press'),
             ),
           ],
         ),
