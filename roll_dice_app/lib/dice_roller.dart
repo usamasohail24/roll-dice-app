@@ -14,16 +14,16 @@ class DiceRoller extends StatefulWidget {
 
 class _DiceRollerState extends State<DiceRoller> {
 
-  var activeDiceImage = 'assets/images/dice-2.png';
+  var currentDiceRoll = 2;
 
   void rollDice()
   {
+  
     // 6 --> gives value between 0 and 5 that's why we are adding 1 in it --> 1 and 6
-
-    var diceRoll = Random().nextInt(6) + 1; // provided by dart:math library when we roll dice it generate a random number (integer) 6 --> highest possible value of a dice
+    // provided by dart:math library when we roll dice it generate a random number (integer) 6 --> highest possible value of a dice
 
     setState(() { // set state method re-builds the ui (build method) otherwise our ui doesn't changed
-      activeDiceImage = 'assets/images/dice-$diceRoll.png';
+      currentDiceRoll = Random().nextInt(6) + 1;
     });
   }
   
@@ -34,7 +34,7 @@ class _DiceRollerState extends State<DiceRoller> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              activeDiceImage,
+              'assets/images/dice-$currentDiceRoll.png',
               width: 200,
             ),
             const SizedBox(height: 20),
