@@ -42,11 +42,17 @@ class _DiceRollerState extends State<DiceRoller> {
               style: TextButton.styleFrom(
                 //padding: const EdgeInsets.only(top: 20), // padding is done for extra spacing between dice and button
                 foregroundColor: Colors.white,
+                backgroundColor: Colors.black26,
                 textStyle: const TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                 ),
               ),
-              child: const Text('Roll Dice'),
+              child: const Text(
+                'Roll Dice',
+                style: TextStyle(
+                  fontSize: 18, 
+                ),
+              ),
             ),
           ],
     );
