@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class DiceRoller extends StatefulWidget {
   const DiceRoller({super.key});
@@ -17,8 +18,12 @@ class _DiceRollerState extends State<DiceRoller> {
 
   void rollDice()
   {
+    // 6 --> gives value between 0 and 5 that's why we are adding 1 in it --> 1 and 6
+
+    var diceRoll = Random().nextInt(6) + 1; // provided by dart:math library when we roll dice it generate a random number (integer) 6 --> highest possible value of a dice
+
     setState(() { // set state method re-builds the ui (build method) otherwise our ui doesn't changed
-      activeDiceImage = 'assets/images/dice-4.png';
+      activeDiceImage = 'assets/images/dice-$diceRoll.png';
     });
   }
   
