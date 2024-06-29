@@ -9,8 +9,8 @@ void main()
         body: GradientContainer(
           colors: 
           [
-            Color.fromARGB(255, 33, 5, 109), 
-            Color.fromARGB(255, 68, 21, 149)
+            Color.fromARGB(255, 6, 171, 17), 
+            Color.fromARGB(255, 3, 58, 18)
           ],
         ),
       ),
