@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
 final random = Random();
 
@@ -12,49 +13,53 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
+  final AudioPlayer audioPlayer = AudioPlayer(); // intializing audioplayer once
 
   var currentDiceRoll = 2;
 
-  void rollDice()
+  void rollDice() async 
   {
-  
-    // 6 --> gives value between 0 and 5 that's why we are adding 1 in it --> 1 and 6
-    // provided by dart:math library when we roll dice it generate a random number (integer) 6 --> highest possible value of a dice
+    await audioPlayer.play(AssetSource('rolldicesound.wav'));
 
-    setState(() { // set state method re-builds the ui (build method) otherwise our ui doesn't changed
+    setState(() {
       currentDiceRoll = random.nextInt(6) + 1;
     });
   }
-  
+
+  @override
+  void dispose() 
+  {
+    audioPlayer.dispose(); // disposing audioplayer when it is not needed
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              'assets/images/dice-$currentDiceRoll.png',
-              width: 200,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset(
+          'assets/images/dice-$currentDiceRoll.png',
+          width: 200,
+        ),
+        const SizedBox(height: 20),
+        TextButton(
+          onPressed: rollDice,
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black26,
+            textStyle: const TextStyle(
+              fontSize: 24,
             ),
-            const SizedBox(height: 20),
-            TextButton(
-              onPressed: rollDice,
-              style: TextButton.styleFrom(
-                //padding: const EdgeInsets.only(top: 20), // padding is done for extra spacing between dice and button
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.black26,
-                textStyle: const TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-              child: const Text(
-                'Roll Dice',
-                style: TextStyle(
-                  fontSize: 18, 
-                ),
-              ),
+          ),
+          child: const Text(
+            'Roll Dice',
+            style: TextStyle(
+              fontSize: 18,
             ),
-          ],
+          ),
+        ),
+      ],
     );
   }
 }
